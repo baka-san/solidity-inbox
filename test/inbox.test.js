@@ -38,8 +38,9 @@ describe('Inbox', () => {
   })
 
   it('sets the message', async () => {
-    const message = await inbox.methods.setMessage('New message').send()
-    assert.equal(message, 'New message')
+    await inbox.methods.setMessage('Goodbye').send({ from: accounts[0] })
+    const message = await inbox.methods.message().call()
+    assert.equal(message, 'Goodbye')
   })
 })
 
